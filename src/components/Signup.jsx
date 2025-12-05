@@ -1,8 +1,19 @@
 export default function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
-  }
-  
+
+    // FormData is a built-in browser API that collects values from inputs.
+    // Each input must have a 'name' attribute for FormData to read it.
+
+    const fd = new FormData(event.target);
+    const acquisitionChannel = fd.getAll("acquisition");
+    // Object.fromEntries converts FormData entries into a plain JavaScript object
+    // so we can access input values as key-value pairs.
+    const data = Object.fromEntries(fd.entries())
+    data.acquisition = acquisitionChannel;
+    console.log(data);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Welcome on board!</h2>
