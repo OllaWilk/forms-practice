@@ -5,6 +5,11 @@ export default function StateLogin() {
     email: '',
     password: ''
   })
+  
+  const [didEdit, setDidEdit] = useState({
+    email: false,
+    password: false
+  })
 
   const emailIsInvalid = data.email !== '' && data.email.includes('@');
   console.log(emailIsInvalid)
@@ -23,6 +28,7 @@ export default function StateLogin() {
     }))
   }
 
+  const handleInputBlur = (identifier) => {}
   const handleReset = () => {
     setData({ email: "", password: "" });
   };
@@ -34,7 +40,13 @@ export default function StateLogin() {
       <div className="control-row">
         <div className="control no-margin">
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" value={data.email} onChange={handleChange} />
+          <input 
+          id="email" 
+          type="email"
+          name="email" 
+          value={data.email} 
+          onChange={handleChange} 
+          onBlur={handleInputBlur} />
           <div className="control-error">{!emailIsInvalid && <p>Please enter a valid email address.</p>}</div>
         </div>
 
